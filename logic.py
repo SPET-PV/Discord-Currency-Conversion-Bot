@@ -7,7 +7,7 @@ import requests
 
 # ----------------------------------------------------------------------------
 
-def get(form_currency: str,
+def get(from_currency: str,
         to_currency: str,
         amount:str) -> str:
     """Get currency conversion data from the fawazahmed0 API
@@ -28,19 +28,37 @@ def get(form_currency: str,
         requests.exceptions.RequestException: If all fallback 
         URLs result in non-200 responses.
     """
+    
+    # Verification if the currency exist
+    with open('currencies.json', 'r') as file:
+        currencies = json.load(file)
+    from_found = False
+    to_found = False
+    
+    for key, value in currencies.items():
+        if value.lower() == from_currency.lower() or key == from_currency.lower():
+            from_found = True
+            from_currency = key
+        elif value.lower() == to_currency.lower() or key == to_currency.lower():
+            to_found = True
+            to_currency = key
+    
+    if not (from_found and to_found):
+        raise ValueError("The currencies inserted are incorrect.")
+
     # Fallback System
     urls = [
         f'https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1\
-/latest/currencies/{form_currency.lower()}/{to_currency.lower()}\
+/latest/currencies/{from_currency}/{to_currency}\
 .json',
         f'https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1\
-/latest/currencies/{form_currency.lower()}/{to_currency.lower()}\
+/latest/currencies/{from_currency}/{to_currency}\
 .min.json',
         f'https://raw.githubusercontent.com/fawazahmed0/currency-api\
-/1/latest/currencies/{form_currency.lower()}/{to_currency.lower()}\
+/1/latest/currencies/{from_currency}/{to_currency}\
 .json',
         f'https://raw.githubusercontent.com/fawazahmed0/currency-api\
-/1/latest/currencies/{form_currency.lower()}/{to_currency.lower()}\
+/1/latest/currencies/{from_currency}/{to_currency}\
 .min.json'
     ]
 
@@ -56,12 +74,13 @@ def get(form_currency: str,
     
     # Convert the string formatted-JSON to a Dictionnary 
     response_dict = json.loads(response_data)
-
+    
     # Calculate the currency conversion result
  
     result = float(amount) * response_dict[to_currency.lower()]
     date = response_dict['date']
     return f'{result:.2f} {date}'
+
 
 
 if __name__ == "__main__":
