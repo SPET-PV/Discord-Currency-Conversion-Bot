@@ -1,0 +1,6 @@
+discord.py
+colorama
+requests
+python-dotenv
+pyowm
+asyncio
