@@ -1,7 +1,8 @@
 # (c) 2023 SPET-PV. All rights reserved.
 # This is an open-source Discord Currency Conversion Bot that utilizes the 
 # Discord API and https://github.com/fawazahmed0/currency-api API.
-# Source code and licensing information available at: https://github.com/SPET-PV/
+# Source code and licensing information 
+# available at: https://github.com/SPET-PV/
 # Licensed under the MIT License. See LICENSE file for details.
 
 
