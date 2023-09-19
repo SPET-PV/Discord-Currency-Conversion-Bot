@@ -1,8 +1,7 @@
 # (c) 2023 SPET-PV. All rights reserved.
 # This is an open-source Discord Currency Conversion Bot that utilizes the 
 # Discord API and https://github.com/fawazahmed0/currency-api API.
-# Source code and licensing information 
-# available at: https://github.com/SPET-PV/
+# Source code and licensing information available at: https://github.com/SPET-PV/
 # Licensed under the MIT License. See LICENSE file for details.
 
 
@@ -59,9 +58,8 @@ def run_bot():
         await client.close()
     
     ## Currency Command
-    @client.tree.command(name="Currency",
-                         description="This command convert currencies "
-                         "with their codes (e.g., 'USD' to 'EUR').")
+    @client.tree.command(name="currency",
+                         description="This command convert currencies with their codes (e.g., 'USD' to 'EUR').")
     async def currency(interaction:discord.Interaction,
                        fromcurrency:str,
                        tocurrency:str,
@@ -74,7 +72,7 @@ def run_bot():
             date = values[1]
 
             # Creation of the embed        
-            embed = discord.Embed(color= discord.Color.blue(),
+            embed = discord.Embed(color= discord.Color.purple(),
                                   title='Currency Exchange Conversion',
                                   type='rich')
             
