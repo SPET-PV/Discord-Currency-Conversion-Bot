@@ -1,4 +1,4 @@
-# Discord Weather Bot
+# Discord Currency Bot
 - The Discord Currency Bot is a simple utility bot that provides real-time currency conversion rates. It can convert currencies based on the latest exchange rates from a trusted source (https://github.com/fawazahmed0/currency-api).
 
 # Commands:
